@@ -1,43 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Website</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>E-Market — Smart Shopping Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#ff9900; /* warm accent */
+      --dark:#0f1724;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.06);
+      --radius:12px;
+      --shadow: 0 6px 24px rgba(15,23,36,0.08);
+      --max-width:1200px;
+      --container-padding:24px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, #f6f8fb 0%, #ffffff 100%);
+      color:var(--dark);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+    .wrap{max-width:var(--max-width);margin:32px auto;padding:0 var(--container-padding)}
 
-        .container {
-            text-align: center;
-            color: #333;
-        }
+    /* NAV */
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:16px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--brand),#ffb752);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:18px;box-shadow:var(--shadow)
+    }
+    .brand h1{margin:0;font-size:16px;letter-spacing:0.2px}
+    .search{
+      flex:1;max-width:640px;display:flex;align-items:center;background:var(--card);border-radius:8px;padding:8px;box-shadow:0 2px 10px rgba(16,24,40,0.05);
+    }
+    .search input{border:0;outline:0;font-size:14px;padding:10px 12px;width:100%;}
+    .search button{background:var(--brand);border:0;color:white;padding:10px 16px;border-radius:6px;font-weight:600;cursor:pointer}
+    .nav-actions{display:flex;gap:18px;align-items:center}
+    .nav-actions a{color:var(--muted);text-decoration:none;font-weight:600}
 
-        h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
-            color: #3498db;
-        }
+    /* HERO */
+    .hero{display:flex;gap:28px;align-items:center;margin-top:18px}
+    .hero-left{flex:1}
+    .kicker{display:inline-block;background:linear-gradient(90deg,#fff2e6,#fff9f0);color:#8b4a00;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+    .hero h2{font-size:34px;margin:14px 0 8px;line-height:1.05}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn-primary{background:var(--brand);border:0;color:#111;padding:12px 18px;border-radius:10px;font-weight:700;box-shadow:0 10px 30px rgba(255,153,0,0.14);cursor:pointer}
+    .btn-outline{background:transparent;border:1px solid rgba(15,23,36,0.06);padding:10px 14px;border-radius:10px;color:var(--dark);cursor:pointer}
+    .trust{display:flex;gap:18px;margin-top:18px;color:var(--muted);font-size:13px}
 
-        p {
-            font-size: 1.5em;
-            margin-top: 0;
-            color: #777;
-        }
-    </style>
+    .hero-right{width:420px;background:linear-gradient(180deg,#ffffff,#fffaf2);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .product-preview{display:flex;gap:14px}
+    .product-preview img{width:140px;height:140px;object-fit:cover;border-radius:12px}
+    .product-info h3{margin:0;font-size:16px}
+    .price{margin-top:8px;font-weight:800;font-size:20px;color:var(--dark)}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* GRID */
+    section.featured{margin-top:28px}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(16,24,40,0.04);display:flex;flex-direction:column;gap:10px}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .card h4{margin:0;font-size:15px}
+    .card .meta{display:flex;justify-content:space-between;align-items:center}
+    .rating{display:flex;gap:6px;align-items:center;color:#ffb020;font-weight:700}
+    .price-large{font-weight:800}
+    .badge{background:var(--glass);padding:6px 8px;border-radius:8px;font-weight:700;color:var(--brand)}
+    .card .buy{margin-top:auto;display:flex;gap:8px}
+    .buy button{flex:1;border:0;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}
+    .buy .cart{background:#111;color:white}
+    .buy .wishlist{background:transparent;border:1px solid rgba(15,23,36,0.06)}
+
+    /* FOOTER */
+    footer{margin-top:40px;padding:28px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#f8fafc);box-shadow:inset 0 1px 0 rgba(0,0,0,0.02)}
+    .foot-grid{display:flex;gap:24px;justify-content:space-between;align-items:flex-start}
+    .socials{display:flex;gap:10px}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .hero-right{display:none}
+    }
+    @media (max-width:640px){
+      .hero{flex-direction:column}
+      header{flex-direction:column;align-items:flex-start;gap:12px}
+      .search{max-width:100%}
+      .grid{grid-template-columns:1fr}
+      .brand h1{font-size:14px}
+      .logo{width:40px;height:40px}
+    }
+
+    /* Small utilities */
+    .muted{color:var(--muted)}
+    .shadow-sm{box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+  </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Welcome to My Website, Version 1.0</h1>
-    </div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">EM</div>
+        <div>
+          <h1>E‑Market</h1>
+          <div class="muted" style="font-size:12px">Smart deals, fast delivery</div>
+        </div>
+      </div>
+
+      <div class="search" role="search" aria-label="Site search">
+        <input type="search" placeholder="Search for products, categories, brands...">
+        <button aria-label="Search">Search</button>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#">Sign in</a>
+        <a href="#">Orders</a>
+        <a href="#" aria-label="Cart">Cart (0)</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-left">
+          <span class="kicker">Limited time: Free delivery over ₹799</span>
+          <h2>Everything you need — discover top products & deals</h2>
+          <p>Curated picks across electronics, home, fashion and more. Hand-picked deals and trusted sellers — shop with confidence.</p>
+
+          <div class="cta-row">
+            <button class="btn-primary">Shop bestsellers</button>
+            <button class="btn-outline">See categories</button>
+          </div>
+
+          <div class="trust">
+            <div><strong>4.8M+</strong> Customers</div>
+            <div><strong>30-Day</strong> Returns</div>
+            <div><strong>24/7</strong> Support</div>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <div class="product-preview">
+            <img src="https://picsum.photos/200/200?random=1" alt="Product image">
+            <div class="product-info">
+              <h3>Wireless Noise-Cancelling Headphones</h3>
+              <div class="small">Up to 30 hrs battery • Bluetooth 5.3</div>
+              <div class="price">₹6,499 <span class="muted" style="font-weight:600;font-size:13px;margin-left:8px;text-decoration:line-through;color:#b6b6b6">₹8,999</span></div>
+              <div style="margin-top:10px"><button class="btn-primary" style="padding:8px 12px;font-size:13px">Add to cart</button></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="featured">
+        <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:14px">
+          <div>
+            <h3 style="margin:0">Featured products</h3>
+            <div class="muted" style="font-size:13px">Handpicked for you</div>
+          </div>
+          <div class="badge">Hot Deals</div>
+        </div>
+
+        <div class="grid">
+
+          <!-- Card 1 -->
+          <article class="card">
+            <img src="https://picsum.photos/400/300?random=2" alt="4K Smart TV">
+            <h4>43" 4K Smart LED TV</h4>
+            <div class="meta">
+              <div class="rating">★★★★☆ <span class="muted" style="font-size:13px;color:#374151;margin-left:6px">4.5</span></div>
+              <div class="price-large">₹24,999</div>
+            </div>
+            <div class="small">Free installation • 2-year warranty</div>
+            <div class="buy">
+              <button class="cart">Add to Cart</button>
+              <button class="wishlist">Wishlist</button>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card">
+            <img src="https://picsum.photos/400/300?random=3" alt="Smartphone">
+            <h4>Flagship Smartphone 256GB</h4>
+            <div class="meta">
+              <div class="rating">★★★★★ <span class="muted" style="font-size:13px;color:#374151;margin-left:6px">4.8</span></div>
+              <div class="price-large">₹69,999</div>
+            </div>
+            <div class="small">Fast charge • Dual SIM</div>
+            <div class="buy">
+              <button class="cart">Add to Cart</button>
+              <button class="wishlist">Wishlist</button>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card">
+            <img src="https://picsum.photos/400/300?random=4" alt="Coffee Maker">
+            <h4>Barista Pro Espresso Machine</h4>
+            <div class="meta">
+              <div class="rating">★★★★☆ <span class="muted" style="font-size:13px;color:#374151;margin-left:6px">4.6</span></div>
+              <div class="price-large">₹12,499</div>
+            </div>
+            <div class="small">Compact • 15-bar pump</div>
+            <div class="buy">
+              <button class="cart">Add to Cart</button>
+              <button class="wishlist">Wishlist</button>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="card">
+            <img src="https://picsum.photos/400/300?random=5" alt="Running Shoes">
+            <h4>Performance Running Shoes</h4>
+            <div class="meta">
+              <div class="rating">★★★★☆ <span class="muted" style="font-size:13px;color:#374151;margin-left:6px">4.4</span></div>
+              <div class="price-large">₹3,799</div>
+            </div>
+            <div class="small">Breathable • Light-weight</div>
+            <div class="buy">
+              <button class="cart">Add to Cart</button>
+              <button class="wishlist">Wishlist</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="foot-grid">
+        <div style="max-width:60%">
+          <h4 style="margin:0">E‑Market</h4>
+          <p class="muted" style="margin-top:8px">Secure payments • Buyer protection • Fast shipping</p>
+        </div>
+
+        <div style="display:flex;gap:30px;align-items:flex-start">
+          <div>
+            <div class="muted" style="font-size:13px">Support</div>
+            <div style="margin-top:8px"><a href="#">Help Center</a><br><a href="#">Refunds</a></div>
+          </div>
+          <div>
+            <div class="muted" style="font-size:13px">Company</div>
+            <div style="margin-top:8px"><a href="#">About</a><br><a href="#">Careers</a></div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
