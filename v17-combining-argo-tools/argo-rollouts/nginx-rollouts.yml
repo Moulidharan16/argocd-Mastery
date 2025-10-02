@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginx-rollouts
-        image: nexus-nexus-repository-manager.nexus.svc.cluster.local:8085/nginx:26af3e9d-a724-4c3e-8ee2-c200d08fc4c5
+        image: moulicmd/myreactapp:latest
         ports:
         - containerPort: 80
 ---
