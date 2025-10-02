@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginx-rollouts
-        image: moulicmd/myreactapp:latest
+        image: localhost:30629/nginx:alpine
         ports:
         - containerPort: 80
 ---
