@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginx-rollouts
-        image: nexus-nexus-repository-manager.nexus.svc.cluster.local:8085/nginx:f86f3963-72a6-4a1e-a4ed-9fff0800b848
+        image: localhost:30629/nginx:f86f3963-72a6-4a1e-a4ed-9fff0800b848
         ports:
         - containerPort: 80
 ---
