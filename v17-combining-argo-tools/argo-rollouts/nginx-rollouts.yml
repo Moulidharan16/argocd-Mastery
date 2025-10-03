@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: nginx-rollouts
-        image: localhost:30629/nginx:41a41130-a434-4dbf-a0de-d8f1a96d5db7
+        image: localhost:30629/nginx:396f926f-03e8-4240-a302-8af7fde3eb9d
         ports:
         - containerPort: 80
 ---
